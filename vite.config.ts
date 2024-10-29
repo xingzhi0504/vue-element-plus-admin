@@ -19,7 +19,7 @@ import { visualizer } from 'rollup-plugin-visualizer'
 const root = process.cwd()
 
 function pathResolve(dir: string) {
-  return resolve(root, '.', dir)
+  return resolve(root, './', dir)
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
@@ -69,7 +69,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         include: [resolve(__dirname, 'src/locales/**')]
       }),
       createSvgIconsPlugin({
-        iconDirs: [pathResolve('src/assets/svgs')],
+        iconDirs: [resolve(__dirname, 'src/assets/svgs')],
         symbolId: 'icon-[dir]-[name]',
         svgoOptions: true
       }),
@@ -105,12 +105,16 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
       alias: [
         {
-          find: 'vue-i18n',
-          replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
+          find: '@',
+          replacement: resolve(__dirname, './src')
         },
         {
-          find: /\@\//,
-          replacement: `${pathResolve('src')}/`
+          find: 'assets',
+          replacement: resolve(__dirname, './src/assets')
+        },
+        {
+          find: 'vue-i18n',
+          replacement: 'vue-i18n/dist/vue-i18n.cjs.js'
         }
       ]
     },
@@ -122,20 +126,39 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       target: 'es2015',
       outDir: env.VITE_OUT_DIR || 'dist',
       sourcemap: env.VITE_SOURCEMAP === 'true',
-      // brotliSize: false,
-      rollupOptions: {
-        plugins: env.VITE_USE_BUNDLE_ANALYZER === 'true' ? [visualizer()] : undefined,
-        // 拆包
-        output: {
-          manualChunks: {
-            'vue-chunks': ['vue', 'vue-router', 'pinia', 'vue-i18n'],
-            'element-plus': ['element-plus'],
-            'wang-editor': ['@wangeditor/editor', '@wangeditor/editor-for-vue'],
-            echarts: ['echarts', 'echarts-wordcloud']
-          }
+      minify: 'terser', //压缩方式
+      chunkSizeWarningLimit: 1000, // 提高超大静态资源警告大小
+      terserOptions: {
+        // 清除console和debugger
+        compress: {
+          drop_console: true,
+          drop_debugger: true
         }
       },
-      cssCodeSplit: !(env.VITE_USE_CSS_SPLIT === 'false')
+      rollupOptions: {
+        input: 'index.html',
+        output: {
+          // 静态资源打包做处理
+          chunkFileNames: 'static/js/[name]-[hash].js',
+          entryFileNames: 'static/js/[name]-[hash].js',
+          assetFileNames: (chunkInfo) => {
+            if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)$/.test(chunkInfo.name || '[ext]')) {
+              // 匹配资源文件后缀
+              return `static/media/[name].[hash].[ext]`
+            }
+            if (/\.(png|jpg|jpeg|gif|webp)$/.test(chunkInfo.name || '[ext]')) {
+              // 匹配资源文件后缀
+              return `static/images/[name].[hash].[ext]`
+            }
+            return `static/[ext]/[name]-[hash].[ext]` // 不匹配的资源文件存放至assets，以[name]-[hash].[ext]命名规则，注意两处的命名规则不同
+          },
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return id.toString().split('node_modules/')[1].split('/')[0].toString()
+            }
+          }
+        }
+      }
     },
     server: {
       port: 4000,

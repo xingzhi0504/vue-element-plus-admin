@@ -1,7 +1,7 @@
 import { SUCCESS_CODE } from '@/constants'
 import { MockMethod } from 'vite-plugin-mock'
 
-const timeout = 1000
+const timeout = 100
 
 export default [
   // 分析页统计接口

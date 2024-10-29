@@ -111,7 +111,7 @@ export default [
   {
     url: '/mock/department/users',
     method: 'get',
-    timeout: 1000,
+    timeout: 100,
     response: ({ query }) => {
       const { pageSize } = query
       // 根据pageSize来创建数据
@@ -145,7 +145,7 @@ export default [
   {
     url: '/mock/department/user/save',
     method: 'post',
-    timeout: 1000,
+    timeout: 100,
     response: () => {
       return {
         code: SUCCESS_CODE,
@@ -176,7 +176,7 @@ export default [
   {
     url: '/mock/department/save',
     method: 'post',
-    timeout: 1000,
+    timeout: 100,
     response: () => {
       return {
         code: SUCCESS_CODE,

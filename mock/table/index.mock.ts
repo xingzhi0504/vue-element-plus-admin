@@ -2,7 +2,7 @@ import Mock from 'mockjs'
 import { SUCCESS_CODE } from '@/constants'
 import { toAnyString } from '@/utils'
 
-const timeout = 1000
+const timeout = 100
 const count = 100
 
 const baseContent =

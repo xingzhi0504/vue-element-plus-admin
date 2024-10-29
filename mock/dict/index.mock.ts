@@ -1,6 +1,6 @@
 import { SUCCESS_CODE } from '@/constants'
 
-const timeout = 1000
+const timeout = 100
 
 const dictObj: Recordable = {
   importance: [

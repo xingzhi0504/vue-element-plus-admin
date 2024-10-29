@@ -47,6 +47,7 @@ export default defineComponent({
   name: 'Layout',
   setup() {
     return () => (
+      // <div class={`flc-layout`} style={var()}>{renderLayout()}</div>
       <section class={[prefixCls, `${prefixCls}__${layout.value}`, 'w-[100%] h-[100%] relative']}>
         {mobile.value && !collapse.value ? (
           <div
@@ -67,10 +68,12 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-@prefix-cls: ~'@{namespace}-layout';
+@prefix-cls: ~'flc-layout';
 
 .@{prefix-cls} {
-  background-color: var(--app-content-bg-color);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   .@{prefix-cls}-content-scrollbar {
     & > :deep(.el-scrollbar__wrap) {
       & > .@{elNamespace}-scrollbar__view {

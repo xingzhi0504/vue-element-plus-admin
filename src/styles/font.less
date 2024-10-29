@@ -1,0 +1,187 @@
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-ExtraLight.ttf);
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-Light.ttf);
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-Regular.ttf);
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-Medium.ttf);
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-SemiBold.ttf);
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-Bold.ttf);
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-ExtraBold.ttf);
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/PlusJakartaSans-ExtraBold.ttf);
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/static/ttf/Barlow-ExtraLight.ttf);
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Plus Jakarta Sans;
+  src: url(/@/assets/ttf/Barlow-Light.ttf);
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-Regular.ttf);
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-Medium.ttf);
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-SemiBold.ttf);
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-Bold.ttf);
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-ExtraBold.ttf);
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Barlow;
+  src: url(/@/assets/ttf/Barlow-Black.ttf);
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Thin.ttf);
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-ExtraLight.ttf);
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Light.ttf);
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Regular.ttf);
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Medium.ttf);
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-SemiBold.ttf);
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Bold.ttf);
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-ExtraBold.ttf);
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Commissioner;
+  src: url(/@/assets/ttf/Commissioner-Black.ttf);
+  font-weight: 900;
+  font-display: swap;
+}
+
+// 通用的font-size
+each(range(11,70,1), {
+  .com-fs-@{value} {
+    font-size: e(%("%dpx",@value));
+  }
+});
+
+each(range(100, 700, 1), {
+  .com-fw-@{value} {
+    font-weight: @value;
+  }
+});
